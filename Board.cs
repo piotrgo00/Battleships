@@ -37,7 +37,7 @@ namespace Battleships
                 }
             }
         }
-        public void printBoard(int consolePositionX, int consolePositionY)
+        public void printBoard(int consolePositionX, int consolePositionY) //x-nr wiersza, y-nr kolumny
         {
             for (int i = 0; i < 11; i++)
             {
@@ -109,32 +109,6 @@ namespace Battleships
                 case "up":
                     for (int i = 0; i < shipLength; i++)
                     {
-                        if (getWhatOnPoint(x, y - i) != '~')
-                            return 1;
-                    }
-                    for (int i = 0; i < shipLength; i++)
-                    {
-                        if (setOnPoint(x, y - i, 'O') == 1)
-                            Environment.Exit(100);
-                        ships[x + 1, y - i + 1] = shipName;
-                    }
-                    break;
-                case "down":
-                    for (int i = 0; i < shipLength; i++)
-                    {
-                        if (getWhatOnPoint(x, y + i) != '~')
-                            return 1;
-                    }
-                    for (int i = 0; i < shipLength; i++)
-                    {
-                        if (setOnPoint(x, y + i, 'O') == 1)
-                            Environment.Exit(100);
-                        ships[x + 1, y + i + 1] = shipName;
-                    }
-                    break;
-                case "left":
-                    for (int i = 0; i < shipLength; i++)
-                    {
                         if (getWhatOnPoint(x - i, y) != '~')
                             return 1;
                     }
@@ -142,10 +116,10 @@ namespace Battleships
                     {
                         if (setOnPoint(x - i, y, 'O') == 1)
                             Environment.Exit(100);
-                        ships[x - i + 1, y + 1] = shipName;
+                        ships[x + 1 - i, y + 1] = shipName;
                     }
                     break;
-                case "right":
+                case "down":
                     for (int i = 0; i < shipLength; i++)
                     {
                         if (getWhatOnPoint(x + i, y) != '~')
@@ -155,7 +129,33 @@ namespace Battleships
                     {
                         if (setOnPoint(x + i, y, 'O') == 1)
                             Environment.Exit(100);
-                        ships[x + i + 1, y + 1] = shipName;
+                        ships[x + 1 + i, y + 1] = shipName;
+                    }
+                    break;
+                case "left":
+                    for (int i = 0; i < shipLength; i++)
+                    {
+                        if (getWhatOnPoint(x, y - i) != '~')
+                            return 1;
+                    }
+                    for (int i = 0; i < shipLength; i++)
+                    {
+                        if (setOnPoint(x, y - i, 'O') == 1)
+                            Environment.Exit(100);
+                        ships[x + 1, y + 1 - i] = shipName;
+                    }
+                    break;
+                case "right":
+                    for (int i = 0; i < shipLength; i++)
+                    {
+                        if (getWhatOnPoint(x, y + i) != '~')
+                            return 1;
+                    }
+                    for (int i = 0; i < shipLength; i++)
+                    {
+                        if (setOnPoint(x, y + i, 'O') == 1)
+                            Environment.Exit(100);
+                        ships[x + 1, y + 1 + i] = shipName;
                     }
                     break;
                 default:

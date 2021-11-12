@@ -184,7 +184,7 @@ namespace Battleships
                         }
                         if (myBoard.addShip(5, x, y, command[2].ToLower()) == 0)
                         {
-                            myBoard.car++;
+                            //myBoard.car++;
                             myBoard.printBoard(0, 1);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(0, 16);
@@ -210,7 +210,7 @@ namespace Battleships
                         }
                         if (myBoard.addShip(4, x, y, command[2].ToLower()) == 0)
                         {
-                            myBoard.bat++;
+                            //myBoard.bat++;
                             myBoard.printBoard(0, 1);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(0, 16);
@@ -236,7 +236,7 @@ namespace Battleships
                         }
                         if (myBoard.addShip(3, x, y, command[2].ToLower()) == 0)
                         {
-                            myBoard.cru++;
+                            //myBoard.cru++;
                             myBoard.printBoard(0, 1);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(0, 16);
@@ -262,7 +262,7 @@ namespace Battleships
                         }
                         if (myBoard.addShip(2, x, y, command[2].ToLower()) == 0)
                         {
-                            myBoard.sub++;
+                            //myBoard.sub++;
                             myBoard.printBoard(0, 1);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(0, 16);
@@ -297,11 +297,11 @@ namespace Battleships
                         }
                         if (myBoard.addShip(1, x, y, command[2].ToLower()) == 0)
                         {
-                            myBoard.des++;
+                            //myBoard.des++;
                             myBoard.printBoard(0, 1);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.SetCursorPosition(0, 16);
-                            Console.Write("Submarine successfully added!");
+                            Console.Write("Destroyer successfully added!");
                             if (myBoard.des == 3)
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
