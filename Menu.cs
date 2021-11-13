@@ -440,21 +440,46 @@ Press Enter To Continue";
         public static void battleLost()
         {
             Console.Clear();
-            Console.Write(@"▄██   ▄    ▄██████▄  ███    █▄        ▄█        ▄██████▄     ▄████████     ███     
+            Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetWindowSize(83, 22);
+            for(int i = 0; i < 40; i++)
+            {
+                if (i % 20 < 10)
+                    Console.SetCursorPosition(0, i % 20);
+                else
+                    Console.SetCursorPosition(0, 20 - i % 20);
+                Console.Write(@"
+                                                                                   
+▄██   ▄    ▄██████▄  ███    █▄        ▄█        ▄██████▄     ▄████████     ███     
 ███   ██▄ ███    ███ ███    ███      ███       ███    ███   ███    ███ ▀█████████▄ 
 ███▄▄▄███ ███    ███ ███    ███      ███       ███    ███   ███    █▀     ▀███▀▀██ 
 ▀▀▀▀▀▀███ ███    ███ ███    ███      ███       ███    ███   ███            ███   ▀ 
 ▄██   ███ ███    ███ ███    ███      ███       ███    ███ ▀███████████     ███     
 ███   ███ ███    ███ ███    ███      ███       ███    ███          ███     ███     
-███   ███ ███    ███ ███    ███      ███▌    ▄ ███    ███    ▄█    ███     ███     
+███   ███ ███    ███ ███    ███      ████    ▄ ███    ███    ▄█    ███     ███     
  ▀█████▀   ▀██████▀  ████████▀       █████▄▄██  ▀██████▀   ▄████████▀     ▄████▀   
-                                     ▀                                             ");
+                                     ▀                                             
+                                                                                   ");
+                System.Threading.Thread.Sleep(100);
+            }
             Console.ReadKey();
         }
         public static void battleWon()
         {
             Console.Clear();
-            Console.Write(@"▄██   ▄    ▄██████▄  ███    █▄        ▄█     █▄   ▄██████▄  ███▄▄▄▄   
+            Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetWindowSize(70, 22);
+            for (int i = 0; i < 40; i++)
+            {
+                if (i % 20 < 10)
+                    Console.SetCursorPosition(0, i % 20);
+                else
+                    Console.SetCursorPosition(0, 20 - i % 20);
+                Console.Write(@"
+                                                                       
+▄██   ▄    ▄██████▄  ███    █▄        ▄█     █▄   ▄██████▄  ███▄▄▄▄   
 ███   ██▄ ███    ███ ███    ███      ███     ███ ███    ███ ███▀▀▀██▄ 
 ███▄▄▄███ ███    ███ ███    ███      ███     ███ ███    ███ ███   ███ 
 ▀▀▀▀▀▀███ ███    ███ ███    ███      ███     ███ ███    ███ ███   ███ 
@@ -463,6 +488,8 @@ Press Enter To Continue";
 ███   ███ ███    ███ ███    ███      ███ ▄█▄ ███ ███    ███ ███   ███ 
  ▀█████▀   ▀██████▀  ████████▀        ▀███▀███▀   ▀██████▀   ▀█   █▀  
                                                                       ");
+                System.Threading.Thread.Sleep(100);
+            }
             Console.ReadKey();
         }
         public static void addShipsType(Board myBoard, Board enemyBoard, int menuStartLine)
