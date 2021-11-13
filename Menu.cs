@@ -587,6 +587,14 @@ Press Enter To Continue";
                 Console.Write("              ");
                 Console.SetCursorPosition(0, menuStartLine);
                 char[] position = Console.ReadLine().ToUpper().ToCharArray();
+                if(position.Length != 2)
+                {
+                    Console.SetCursorPosition(0, menuStartLine + 6);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write("Wrong position, please try again                   ");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    continue;
+                }
                 y = (int)position[1] - 48;
                 x = (int)position[0] - 65;
                 if (!(0 <= x && x <= 9 && 0 <= y && y <= 9))
