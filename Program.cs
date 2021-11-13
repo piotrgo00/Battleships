@@ -7,7 +7,6 @@ namespace Battleships
     {
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
             string battleshipsBanner = @"
                                                         
    (            )    )  (              )                
