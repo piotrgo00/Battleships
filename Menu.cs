@@ -443,6 +443,7 @@ Press Enter To Continue";
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.SetWindowSize(83, 22);
+            Console.SetBufferSize(84, 23);
             for(int i = 0; i < 40; i++)
             {
                 if (i % 20 < 10)
@@ -461,7 +462,7 @@ Press Enter To Continue";
  ▀█████▀   ▀██████▀  ████████▀       █████▄▄██  ▀██████▀   ▄████████▀     ▄████▀   
                                      ▀                                             
                                                                                    ");
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(200);
             }
             Console.ReadKey();
         }
@@ -471,6 +472,7 @@ Press Enter To Continue";
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.SetWindowSize(70, 22);
+            Console.SetBufferSize(71, 23);
             for (int i = 0; i < 40; i++)
             {
                 if (i % 20 < 10)
@@ -488,7 +490,7 @@ Press Enter To Continue";
 ███   ███ ███    ███ ███    ███      ███ ▄█▄ ███ ███    ███ ███   ███ 
  ▀█████▀   ▀██████▀  ████████▀        ▀███▀███▀   ▀██████▀   ▀█   █▀  
                                                                       ");
-                System.Threading.Thread.Sleep(100);
+                System.Threading.Thread.Sleep(200);
             }
             Console.ReadKey();
         }
