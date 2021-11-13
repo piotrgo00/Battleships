@@ -21,7 +21,7 @@ namespace Battleships
             List<string> startingMenuItems = new List<string>() { "Start", "Info", "Exit" };
             while(true)
             {
-                Console.SetWindowSize(100, 25);
+                Console.SetWindowSize(65, 15);
                 Console.Clear();
                 switch (Menu.menu(startingMenuItems, 11, battleshipsBanner))
                 {
