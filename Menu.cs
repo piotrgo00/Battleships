@@ -444,7 +444,7 @@ Press Enter To Continue";
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.SetWindowSize(83, 22);
             Console.SetBufferSize(84, 23);
-            for(int i = 0; i < 40; i++)
+            for (int i = 0; i < 40; i++)
             {
                 if (i % 20 < 10)
                     Console.SetCursorPosition(0, i % 20);
@@ -589,7 +589,7 @@ Press Enter To Continue";
                 Console.Write("              ");
                 Console.SetCursorPosition(0, menuStartLine);
                 char[] position = Console.ReadLine().ToUpper().ToCharArray();
-                if(position.Length != 2)
+                if (position.Length != 2)
                 {
                     Console.SetCursorPosition(0, menuStartLine + 6);
                     Console.ForegroundColor = ConsoleColor.DarkRed;

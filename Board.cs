@@ -274,12 +274,12 @@ namespace Battleships
         }
         public Boolean shot(int x, int y, int whichBoard)
         {
-            if(whichBoard == 0)
+            if (whichBoard == 0)
             {
                 Console.SetCursorPosition(50, 16);
                 Console.Write("                             ");
             }
-            else 
+            else
             {
                 Console.SetCursorPosition(0, 16);
                 Console.Write("                             ");

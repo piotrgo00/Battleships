@@ -18,7 +18,7 @@ namespace Battleships
  |___/\__,_| \__| \__| |_|\___|/__/|_||_||_|| .__/ /__/ 
                                             |_|         ";
             List<string> startingMenuItems = new List<string>() { "Start", "Info", "Exit" };
-            while(true)
+            while (true)
             {
                 Console.SetWindowSize(65, 15);
                 Console.Clear();
