@@ -10,7 +10,7 @@ namespace Battleships
     {
         public static int menu(List<string> menuItems, int startLine, string battleshipsBanner)
         {
-            Console.Clear();
+            //Console.Clear();
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(battleshipsBanner);
@@ -28,6 +28,7 @@ namespace Battleships
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(menuItems[i]);
                 }
                 Console.ResetColor();
@@ -92,7 +93,6 @@ namespace Battleships
                 else if (ckey.Key == ConsoleKey.Enter)
                 {
                     Console.ResetColor();
-                    Console.Clear();
                     return item;
                 }
             }
@@ -107,13 +107,14 @@ namespace Battleships
             enemyBoard.boardStartX = 50;
             enemyBoard.boardStartY = 1;
             Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetCursorPosition(0, 0);
             Console.Write("Your Board");
             Console.SetCursorPosition(50, 0);
             Console.Write("Enemy Board");
             myBoard.printBoard(myBoard.boardStartX, myBoard.boardStartY);
             enemyBoard.printBoard(enemyBoard.boardStartX, enemyBoard.boardStartY);
-            Menu.addShips(myBoard, enemyBoard);
-            myBoard.printBoard(myBoard.boardStartX, myBoard.boardStartY);
+            Menu.addShipsType(myBoard, enemyBoard, 14);
+            //myBoard.printBoard(myBoard.boardStartX, myBoard.boardStartY);
             Menu.battle(myBoard, enemyBoard);
         }
         public static void addShips(Board myBoard, Board enemyBoard)
@@ -346,7 +347,6 @@ namespace Battleships
             enemyBoard.changeEnemyMarking();
             Console.CursorVisible = false;
         }
-
         public static void battle(Board myBoard, Board enemyBoard)
         {
             Random rnd = new Random();
@@ -374,7 +374,7 @@ namespace Battleships
                 Console.Write("                               ");
                 Console.SetCursorPosition(0, 13);
                 char[] temp = Console.ReadLine().ToUpper().ToCharArray();
-                if(temp.Length == 2)
+                if (temp.Length == 2)
                 {
                     int y = (int)temp[1] - 47;
                     int x = (int)temp[0] - 64;
@@ -405,6 +405,7 @@ namespace Battleships
         }
         public static void info()
         {
+            Console.Clear();
             Console.SetWindowSize(130, 25);
             string inf = @"The game is played on four grids, two for each player. 
 The grids are typically square – usually 10×10 – and the individual squares in the grid are identified by letter and number. 
@@ -453,6 +454,168 @@ Press Enter To Continue";
  ▀█████▀   ▀██████▀  ████████▀        ▀███▀███▀   ▀██████▀   ▀█   █▀  
                                                                       ");
             Console.ReadKey();
+        }
+        public static void addShipsType(Board myBoard, Board enemyBoard, int menuStartLine)
+        {
+            List<string> addShipsTypeMenuItems = new List<string>() { "Carrier", "Battleship", "Cruiser", "Submarine", "Destroyer" };
+            Console.CursorVisible = true;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetCursorPosition(0, 12);
+            Console.Write("Add your battleships                             ");
+            myBoard.writeShipsToAdd(50, 14);
+            while (!myBoard.isBoardFull())
+            {
+                Console.SetWindowSize(100, 25);
+                switch (Menu.menu(addShipsTypeMenuItems, menuStartLine, ""))
+                {
+                    case 0:
+                        if (myBoard.car == 1)
+                        {
+                            Console.SetCursorPosition(0, menuStartLine + 6);
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Can't add more Carriers       ");
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            break;
+                        }
+                        Menu.addShipsPosition(myBoard, Carrier.size, menuStartLine);
+                        break;
+                    case 1:
+                        if (myBoard.bat == 1)
+                        {
+                            Console.SetCursorPosition(0, menuStartLine + 6);
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Can't add more Battleships       ");
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            break;
+                        }
+                        Menu.addShipsPosition(myBoard, Battleship.size, menuStartLine);
+                        break;
+                    case 2:
+                        if (myBoard.cru == 1)
+                        {
+                            Console.SetCursorPosition(0, menuStartLine + 6);
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Can't add more Cruisers       ");
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            break;
+                        }
+                        Menu.addShipsPosition(myBoard, Cruiser.size, menuStartLine);
+                        break;
+                    case 3:
+                        if (myBoard.sub == 2)
+                        {
+                            Console.SetCursorPosition(0, menuStartLine + 6);
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Can't add more Submarines       ");
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            break;
+                        }
+                        Menu.addShipsPosition(myBoard, Submarine.size, menuStartLine);
+                        break;
+                    case 4:
+                        if (myBoard.des == 3)
+                        {
+                            Console.SetCursorPosition(0, menuStartLine + 6);
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
+                            Console.Write("Can't add more Destroyers       ");
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            break;
+                        }
+                        Menu.addShipsPosition(myBoard, Destroyer.size, menuStartLine);
+                        break;
+                    default:
+                        Console.WriteLine("Error while selecting menuItem");
+                        break;
+                }
+                myBoard.printBoard(myBoard.boardStartX, myBoard.boardStartY);
+            }
+            enemyBoard.autoAddShips();
+            enemyBoard.changeEnemyMarking();
+        }
+        public static void addShipsPosition(Board myBoard, int shipLength, int menuStartLine)
+        {
+            int y;
+            int x;
+            Menu.clearLines(menuStartLine, 7);
+            Console.SetCursorPosition(0, 12);
+            Console.CursorVisible = true;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("What position do you want your ship to start (eg. A5)           ");
+            while (true)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.SetCursorPosition(0, menuStartLine);
+                Console.Write("              ");
+                Console.SetCursorPosition(0, menuStartLine);
+                char[] position = Console.ReadLine().ToUpper().ToCharArray();
+                y = (int)position[1] - 48;
+                x = (int)position[0] - 65;
+                if (!(0 <= x && x <= 9 && 0 <= y && y <= 9))
+                {
+                    Console.SetCursorPosition(0, menuStartLine + 6);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write("Position is out of bounds, please try again");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                }
+                else
+                    break;
+            }
+            if (shipLength == 1)
+            {
+                if (myBoard.addShip(shipLength, x, y, "up") != 0)
+                {
+                    Console.SetCursorPosition(0, menuStartLine + 6);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.Write("Could not add Ship, place already occupied        ");
+                }
+                else
+                    myBoard.writeShipsToAdd(50, 14);
+            }
+            else
+                Menu.addShipsDirection(myBoard, shipLength, menuStartLine, x, y);
+        }
+        public static void addShipsDirection(Board myBoard, int shipLength, int menuStartLine, int x, int y)
+        {
+            List<string> addShipsDirectionMenuItems = new List<string>() { "Up", "Down", "Left", "Right" };
+            int errorMessage = 0;
+            Menu.clearLines(menuStartLine, 7);
+            Console.SetCursorPosition(0, 12);
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("What direction do you want your ship to face                  ");
+            switch (Menu.menu(addShipsDirectionMenuItems, menuStartLine, ""))
+            {
+                case 0:
+                    errorMessage = myBoard.addShip(shipLength, x, y, addShipsDirectionMenuItems[0].ToLower());
+                    break;
+                case 1:
+                    errorMessage = myBoard.addShip(shipLength, x, y, addShipsDirectionMenuItems[1].ToLower());
+                    break;
+                case 2:
+                    errorMessage = myBoard.addShip(shipLength, x, y, addShipsDirectionMenuItems[2].ToLower());
+                    break;
+                case 3:
+                    errorMessage = myBoard.addShip(shipLength, x, y, addShipsDirectionMenuItems[3].ToLower());
+                    break;
+                default:
+                    Console.WriteLine("Error while selecting menuItem");
+                    break;
+            }
+            if (errorMessage == 1)
+            {
+                Console.SetCursorPosition(0, menuStartLine + 6);
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write("Could not add Ship, place already occupied        ");
+            }
+            else
+                myBoard.writeShipsToAdd(50, 14);
+        }
+        public static void clearLines(int startLine, int amountOfLines)
+        {
+            for (int i = 0; i < amountOfLines; i++)
+            {
+                Console.SetCursorPosition(0, startLine + i);
+                Console.Write("                                              ");
+            }
         }
     }
 }

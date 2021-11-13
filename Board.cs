@@ -350,5 +350,42 @@ namespace Battleships
             }
             return true;
         }
+        public void writeShipsToAdd(int startX, int startY)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.SetCursorPosition(startX, startY); //50, 14
+            Console.Write("Ships you need to add:");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.SetCursorPosition(startX, startY + 1);
+            if(car == 1)
+                Console.ForegroundColor = ConsoleColor.Red;
+            else
+                Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Carrier\t" + (1 - car));
+            Console.SetCursorPosition(startX, startY + 2);
+            if (bat == 1)
+                Console.ForegroundColor = ConsoleColor.Red;
+            else
+                Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Battleship\t" + (1 - bat));
+            Console.SetCursorPosition(startX, startY + 3);
+            if (cru == 1)
+                Console.ForegroundColor = ConsoleColor.Red;
+            else
+                Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Cruiser\t" + (1 - cru));
+            Console.SetCursorPosition(startX, startY + 4);
+            if (sub == 2)
+                Console.ForegroundColor = ConsoleColor.Red;
+            else
+                Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Submarine\t" + (2 - sub));
+            Console.SetCursorPosition(startX, startY + 5);
+            if (des == 3)
+                Console.ForegroundColor = ConsoleColor.Red;
+            else
+                Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Destroyer\t" + (3 - des));
+        }
     }
 }
