@@ -22,6 +22,7 @@ namespace Battleships
             while(true)
             {
                 Console.SetWindowSize(100, 25);
+                Console.Clear();
                 switch (Menu.menu(startingMenuItems, 11, battleshipsBanner))
                 {
                     case 0:

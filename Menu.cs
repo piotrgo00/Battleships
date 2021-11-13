@@ -364,20 +364,30 @@ namespace Battleships
                 Console.WriteLine("                                                                                                          ");
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.SetCursorPosition(0, 12);
+            Console.SetCursorPosition(enemyBoard.boardStartX, 12);
             Console.Write("Choose field you want to shot (eg. A5)");
             while (!myBoard.isBoardEmpty() && !enemyBoard.isBoardEmpty())
             {
-                Console.SetCursorPosition(0, 13);
+                Console.SetCursorPosition(enemyBoard.boardStartX, 13);
                 Console.Write("         ");
                 Console.SetCursorPosition(0, 14);
-                Console.Write("                               ");
-                Console.SetCursorPosition(0, 13);
+                Console.Write("                                                                    ");
+                Console.SetCursorPosition(enemyBoard.boardStartX, 13);
                 char[] temp = Console.ReadLine().ToUpper().ToCharArray();
                 if (temp.Length == 2)
                 {
                     int y = (int)temp[1] - 47;
                     int x = (int)temp[0] - 64;
+                    if (!(1 <= x && x <= 10 && 1 <= y && y <= 10))
+                    {
+                        Console.SetCursorPosition(0, 15);
+                        Console.Write("                                                                                                      ");
+                        Console.SetCursorPosition(50, 15);
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("Position is out of bounds, please try again");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        continue;
+                    }
                     enemyBoard.shot(x, y, 0);
                     enemyBoard.printBoard(50, 1);
                     while (myBoard.shot(rnd.Next(10) + 1, rnd.Next(10) + 1, 1)) { }
@@ -385,7 +395,7 @@ namespace Battleships
                 }
                 else
                 {
-                    Console.SetCursorPosition(0, 14);
+                    Console.SetCursorPosition(enemyBoard.boardStartX, 14);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("Field out of bounds");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -463,6 +473,7 @@ Press Enter To Continue";
             Console.SetCursorPosition(0, 12);
             Console.Write("Add your battleships                             ");
             myBoard.writeShipsToAdd(50, 14);
+            //myBoard.autoAddShips();
             while (!myBoard.isBoardFull())
             {
                 Console.SetWindowSize(100, 25);
@@ -531,6 +542,7 @@ Press Enter To Continue";
             }
             enemyBoard.autoAddShips();
             enemyBoard.changeEnemyMarking();
+            myBoard.printBoard(myBoard.boardStartX, myBoard.boardStartY);
         }
         public static void addShipsPosition(Board myBoard, int shipLength, int menuStartLine)
         {

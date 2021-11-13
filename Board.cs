@@ -62,7 +62,7 @@ namespace Battleships
                         temp = '~';
                     else
                         temp = ocean[i, j];
-                    Console.Write("[" +  temp + "]");
+                    Console.Write("[" + temp + "]");
                 }
             }
             Console.ResetColor();
@@ -274,7 +274,17 @@ namespace Battleships
         }
         public Boolean shot(int x, int y, int whichBoard)
         {
-            if(ocean[x, y] == 'e' || ocean[x, y] == 'O')
+            if(whichBoard == 0)
+            {
+                Console.SetCursorPosition(50, 16);
+                Console.Write("                             ");
+            }
+            else 
+            {
+                Console.SetCursorPosition(0, 16);
+                Console.Write("                             ");
+            }
+            if (ocean[x, y] == 'e' || ocean[x, y] == 'O')
             {
                 ocean[x, y] = '*';
                 shipList.Where(i => i.name == ships[x, y]).FirstOrDefault().leftToDestroy--;
@@ -284,18 +294,78 @@ namespace Battleships
                     {
                         case "des":
                             des--;
+                            if (whichBoard == 0)
+                            {
+                                Console.SetCursorPosition(50, 16);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Enemy Destroyer Destroyed     ");
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(0, 16);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("Your Destroyer Destroyed     ");
+                            }
                             break;
                         case "sub":
                             sub--;
+                            if (whichBoard == 0)
+                            {
+                                Console.SetCursorPosition(50, 16);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Enemy Submarine Destroyed     ");
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(0, 16);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("Your Submarine Destroyed     ");
+                            }
                             break;
                         case "cru":
                             cru--;
+                            if (whichBoard == 0)
+                            {
+                                Console.SetCursorPosition(50, 16);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Enemy Cruiser Destroyed     ");
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(0, 16);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("Your Cruiser Destroyed     ");
+                            }
                             break;
                         case "bat":
                             bat--;
+                            if (whichBoard == 0)
+                            {
+                                Console.SetCursorPosition(50, 16);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Enemy Battleship Destroyed     ");
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(0, 16);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("Your Battleship Destroyed     ");
+                            }
                             break;
                         case "car":
                             car--;
+                            if (whichBoard == 0)
+                            {
+                                Console.SetCursorPosition(50, 16);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Write("Enemy Carrier Destroyed     ");
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(0, 16);
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("Your Carrier Destroyed     ");
+                            }
                             break;
                         default:
                             Environment.Exit(99);
@@ -305,16 +375,16 @@ namespace Battleships
                 }
                 if (whichBoard == 0)
                 {
-                    Console.SetCursorPosition(0, 15);
+                    Console.SetCursorPosition(50, 15);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("Hit at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                           ");
+                    Console.Write("Hit at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                                     ");
                     return false;
                 }
                 else
                 {
-                    Console.SetCursorPosition(0, 16);
+                    Console.SetCursorPosition(0, 15);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("Enemy hit at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                           ");
+                    Console.Write("Enemy hit at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                  ");
                     return false;
                 }
             }
@@ -322,29 +392,28 @@ namespace Battleships
             {
                 if (whichBoard == 0)
                 {
-                    Console.SetCursorPosition(0, 15);
+                    Console.SetCursorPosition(50, 15);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("Miss at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!  You already shot at this field     ");
+                    Console.Write("Miss at: " + ((char)(x + 64)) + ((char)(y + 47)) + "! You already shot at this field     ");
                     return false;
                 }
                 return true;
             }
             else if (ocean[x, y] == '~')
             {
-                
                 if (ocean[x, y] == '~')
                     ocean[x, y] = 'X';
                 if (whichBoard == 0)
                 {
-                    Console.SetCursorPosition(0, 15);
+                    Console.SetCursorPosition(50, 15);
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("Missed at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                      ");
+                    Console.Write("Missed at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                                  ");
                 }
                 else
                 {
-                    Console.SetCursorPosition(0, 16);
+                    Console.SetCursorPosition(0, 15);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write("Enemy missed at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                           ");
+                    Console.Write("Enemy missed at: " + ((char)(x + 64)) + ((char)(y + 47)) + "!                ");
                 }
                 return false;
             }
@@ -357,7 +426,7 @@ namespace Battleships
             Console.Write("Ships you need to add:");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(startX, startY + 1);
-            if(car == 1)
+            if (car == 1)
                 Console.ForegroundColor = ConsoleColor.Red;
             else
                 Console.ForegroundColor = ConsoleColor.Green;
